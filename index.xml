@@ -1,0 +1,78 @@
+<craft>
+	<parameter name="width" type="int" default="8"/>
+	<parameter name="height" type="int" default="45"/>
+	<parameter name="size" type="int" default="1"/>
+	<script type="text/openjscad">
+
+		function main(params) {
+			var width = params.width;
+			var height = params.height;
+			var size = params.size;
+
+			if (width < 5)
+				width = 5;
+
+			if (height < 3)
+				height = 3;
+
+			// assembled candle
+			return union(
+				candle(),
+				wick_and_flame()
+			).scale(size);
+
+			// candle components
+			function candle() {
+			    // parts
+			    var body = cylinder({
+			    	r: width / 2,
+			    	h: height - 1
+			    });
+
+			    var roundtop = torus({
+			    	ri: 1,
+			    	ro: (width / 2) - 1,
+			    	fni: 16
+			    });
+
+			    var fill = cylinder({
+		            r: (width / 2) - 1,
+		            h: 1
+		        });
+			    
+			    // transformations
+			    roundtop = roundtop.translate([0, 0, height - 1]);
+			    fill = fill.translate([0, 0, height - 1]);
+			    body = union(body, roundtop, fill);
+
+			    return body;
+			}
+
+			function wick_and_flame() {
+				// parts
+			    var base = sphere({r: 1});
+
+			    var top = cylinder({
+			    	r1: 1.01,
+			    	r2:0,
+			    	h: 5.5
+			    });
+
+				var wick = cylinder({
+			    	r: 0.2,
+			    	h: height + 2
+		    	});		
+
+		    	base = union(base, top);
+
+			    // transformations
+			    base = base.scale([1, 1, 1.2]);
+			    base = base.translate([0, 0, height + 2]);
+
+			    return union(wick, base);
+			}
+		}
+
+	</script>
+
+</craft>
