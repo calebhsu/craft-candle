@@ -19,3 +19,5 @@ Parameterized candle model.
 	<candle></candle>
 </craft>
 ```
+
+![example](example.png)
