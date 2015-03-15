@@ -2,102 +2,104 @@
     <parameter name="width" type="int" default="8"/>
     <parameter name="height" type="int" default="45"/>
     
-     <!-- Base -->
-    <script type="text/openjscad">
-        function main() {
-            var width = params.width;
-            var height = params.height;
+    <group>
+         <!-- Base -->
+        <script type="text/openjscad">
+            function main() {
+                var width = params.width;
+                var height = params.height;
 
-            if (width < 5)
-                width = 5;
+                if (width < 5)
+                    width = 5;
+                    
+                if (height < 3)
+                    height = 3;
+                    
+                var body, roundtop, fill;
+
+                // parts
+                body = cylinder({
+                    r: width / 2,
+                    h: height - 1
+                });
+
+                roundtop = torus({
+                    ri: 1,
+                    ro: (width / 2) - 1,
+                    fni: 16
+                });
+
+                fill = cylinder({
+                    r: (width / 2) - 1,
+                    h: 1
+                });
                 
-            if (height < 3)
-                height = 3;
+                // transformations
+                roundtop = roundtop.translate([0, 0, height - 1]);
+                fill = fill.translate([0, 0, height - 1]);
+                body = union(body, roundtop, fill);
+
+                return body;
                 
-            var body, roundtop, fill;
+            }
+        </script>
+        
+        <!-- Wick -->
+        <script type="text/openjscad">
+            function main() {
+                var height = params.height;
+                    
+                var wick;
+        
+                // parts
+                wick = cylinder({
+                    r: 0.2,
+                    h: height + 2
+                });     
+        
+                return wick;
+            }
+        </script>
+        
+        <!-- Flame Base -->
+        <script type="text/openjscad">
+            function main() {
+                var height = params.height;
+                    
+                var base;
+        
+                // parts
+                base = sphere({r: 1});
+        
+                // transformations
+                base = base.scale([1, 1, 1.2]);
+                base = base.translate([0, 0, height + 2]);
+        
+                return base;
+            }
+        </script>
+        
+        <!-- Flame Tip -->
+        <script type="text/openjscad">
+            function main() {
+                var height = params.height;
 
-            // parts
-            body = cylinder({
-                r: width / 2,
-                h: height - 1
-            });
-
-            roundtop = torus({
-                ri: 1,
-                ro: (width / 2) - 1,
-                fni: 16
-            });
-
-            fill = cylinder({
-                r: (width / 2) - 1,
-                h: 1
-            });
-            
-            // transformations
-            roundtop = roundtop.translate([0, 0, height - 1]);
-            fill = fill.translate([0, 0, height - 1]);
-            body = union(body, roundtop, fill);
-
-            return body;
-            
-        }
-    </script>
-    
-    <!-- Wick -->
-    <script type="text/openjscad">
-        function main() {
-            var height = params.height;
-                
-            var wick;
-    
-            // parts
-            wick = cylinder({
-                r: 0.2,
-                h: height + 2
-            });     
-    
-            return wick;
-        }
-    </script>
-    
-    <!-- Flame Base -->
-    <script type="text/openjscad">
-        function main() {
-            var height = params.height;
-                
-            var base;
-    
-            // parts
-            base = sphere({r: 1});
-    
-            // transformations
-            base = base.scale([1, 1, 1.2]);
-            base = base.translate([0, 0, height + 2]);
-    
-            return base;
-        }
-    </script>
-    
-    <!-- Flame Tip -->
-    <script type="text/openjscad">
-        function main() {
-            var height = params.height;
-
-            var tip;
-    
-            // parts
-            tip = cylinder({
-                r1: 1.01,
-                r2:0,
-                h: 5.5
-            });
-    
-            // transformations
-            tip = tip.scale([1, 1, 1.2]);
-            tip = tip.translate([0, 0, height + 2]);
-    
-            return tip;
-        }
-    </script>
+                var tip;
+        
+                // parts
+                tip = cylinder({
+                    r1: 1.01,
+                    r2:0,
+                    h: 5.5
+                });
+        
+                // transformations
+                tip = tip.scale([1, 1, 1.2]);
+                tip = tip.translate([0, 0, height + 2]);
+        
+                return tip;
+            }
+        </script>
+    </group>
     
 </craft>
