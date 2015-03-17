@@ -7,6 +7,7 @@
          <!-- Base -->
         <script type="text/openjscad">
             function main() {
+                var size = params.size;
                 var width = params.width;
                 var height = params.height;
 
@@ -48,6 +49,7 @@
         <!-- Wick -->
         <script type="text/openjscad">
             function main() {
+                var size = params.size;
                 var height = params.height;
                     
                 var wick;
@@ -65,6 +67,7 @@
         <!-- Flame Base -->
         <script type="text/openjscad">
             function main() {
+                var size = params.size;
                 var height = params.height;
                     
                 var base;
@@ -83,6 +86,7 @@
         <!-- Flame Tip -->
         <script type="text/openjscad">
             function main() {
+                var size = params.size;
                 var height = params.height;
 
                 var tip;
