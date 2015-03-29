@@ -8,15 +8,18 @@ Parameterized candle model.
 ### Parameters
 - width: adjusts width of candle
 - height: adjusts height of candle
-- size: scales model
 
 ### Example
 ```html
 <craft>
-	<craft name="candle" module="craft-candle"/>
-	<candle height="15" size="2"></candle>
-	<candle width="15" height="10"></candle>
-	<candle></candle>
+	<craft name="candle" module="calebhsu/craft-candle"/>
+	<lineup spacing="2">
+		<scale factor="2">
+			<candle height="15"></candle>
+		</scale>
+		<candle width="15" height="10"></candle>
+		<candle></candle>
+	</lineup>
 </craft>
 ```
 
