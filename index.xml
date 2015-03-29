@@ -1,5 +1,4 @@
 <craft>
-    <parameter name="size" type="int" default="1"/>
     <parameter name="width" type="int" default="8"/>
     <parameter name="height" type="int" default="45"/>
     
@@ -41,7 +40,7 @@
                 fill = fill.translate([0, 0, height - 1]);
                 body = union(body, roundtop, fill);
 
-                return body.scale(size);
+                return body;
                 
             }
         </script>
@@ -60,7 +59,7 @@
                     h: height + 2
                 });     
         
-                return wick.scale(size);
+                return wick;
             }
         </script>
         
@@ -79,7 +78,7 @@
                 base = base.scale([1, 1, 1.2]);
                 base = base.translate([0, 0, height + 2]);
         
-                return base.scale(size);
+                return base;
             }
         </script>
         
@@ -102,7 +101,7 @@
                 tip = tip.scale([1, 1, 1.2]);
                 tip = tip.translate([0, 0, height + 2]);
         
-                return tip.scale(size);
+                return tip;
             }
         </script>
     </group>
