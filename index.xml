@@ -3,77 +3,64 @@
     <parameter name="height" type="int" default="45"/>
     
     <group>
-         <!-- Base -->
+         <!-- Body -->
         <script type="text/openjscad">
             function main() {
-                var width = params.width;
-                var height = params.height;
-
-                if (width < 5)
-                    width = 5;
+                if (params.width < 5)
+                    params.width = 5;
                     
-                if (height < 3)
-                    height = 3;
-                    
-                var body, roundtop, fill;
+                if (params.height < 3)
+                    params.height = 3;
 
                 // parts
-                body = cylinder({
-                    r: width / 2,
-                    h: height - 1
+                return cylinder({
+                    r: params.width / 2,
+                    h: params.height - 1
                 });
-
-                roundtop = torus({
-                    ri: 1,
-                    ro: (width / 2) - 1,
-                    fni: 16
-                });
-
-                fill = cylinder({
-                    r: (width / 2) - 1,
+            }
+        </script>
+        
+        <!-- Fill -->
+        <script type="text/openjscad">
+            function main() {
+                return cylinder({
+                    r: (params.width / 2) - 1,
                     h: 1
-                });
-                
-                // transformations
-                roundtop = roundtop.translate([0, 0, height - 1]);
-                fill = fill.translate([0, 0, height - 1]);
-                body = union(body, roundtop, fill);
-
-                return body;
-                
+                }).translate([0, 0, params.height - 1]);
+            }
+        </script>
+        
+        <!-- Round Top -->
+        <script type="text/openjscad">
+            function main() {
+                return torus({
+                    ri: 1,
+                    ro: (params.width / 2) - 1,
+                    fni: 16
+                }).translate([0, 0, params.height - 1]);
             }
         </script>
         
         <!-- Wick -->
         <script type="text/openjscad">
-            function main() {
-                var height = params.height;
-                    
-                var wick;
-        
-                // parts
-                wick = cylinder({
+            function main() {                 
+                return cylinder({
                     r: 0.2,
-                    h: height + 2
-                });     
-        
-                return wick;
+                    h: params.height + 2
+                });
             }
         </script>
         
         <!-- Flame Base -->
         <script type="text/openjscad">
-            function main() {
-                var height = params.height;
-                    
+            function main() {   
                 var base;
-        
-                // parts
+
                 base = sphere({r: 1});
         
                 // transformations
                 base = base.scale([1, 1, 1.2]);
-                base = base.translate([0, 0, height + 2]);
+                base = base.translate([0, 0, params.height + 2]);
         
                 return base;
             }
@@ -82,11 +69,8 @@
         <!-- Flame Tip -->
         <script type="text/openjscad">
             function main() {
-                var height = params.height;
-
                 var tip;
         
-                // parts
                 tip = cylinder({
                     r1: 1.01,
                     r2:0,
@@ -95,7 +79,7 @@
         
                 // transformations
                 tip = tip.scale([1, 1, 1.2]);
-                tip = tip.translate([0, 0, height + 2]);
+                tip = tip.translate([0, 0, params.height + 2]);
         
                 return tip;
             }
