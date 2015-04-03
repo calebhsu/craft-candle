@@ -4,7 +4,7 @@
     
     <group>
          <!-- Body -->
-        <script type="text/openjscad">
+        <script type="text/craftml">
             function main() {
                 if (params.width < 5)
                     params.width = 5;
@@ -21,7 +21,7 @@
         </script>
         
         <!-- Fill -->
-        <script type="text/openjscad">
+        <script type="text/craftml">
             function main() {
                 return cylinder({
                     r: (params.width / 2) - 1,
@@ -31,7 +31,7 @@
         </script>
         
         <!-- Round Top -->
-        <script type="text/openjscad">
+        <script type="text/craftml">
             function main() {
                 return torus({
                     ri: 1,
@@ -42,7 +42,7 @@
         </script>
         
         <!-- Wick -->
-        <script type="text/openjscad">
+        <script type="text/craftml">
             function main() {                 
                 return cylinder({
                     r: 0.2,
@@ -52,7 +52,7 @@
         </script>
         
         <!-- Flame Base -->
-        <script type="text/openjscad">
+        <script type="text/craftml">
             function main() {   
                 var base;
 
@@ -67,7 +67,7 @@
         </script>
         
         <!-- Flame Tip -->
-        <script type="text/openjscad">
+        <script type="text/craftml">
             function main() {
                 var tip;
         
