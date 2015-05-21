@@ -1,4 +1,4 @@
-<craft>
+<craft name="candle">
     <parameter name="width" type="int" default="8"/>
     <parameter name="rise" type="int" default="45"/>
 
