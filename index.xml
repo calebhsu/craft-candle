@@ -28,7 +28,6 @@
         
         <script>
             function main() {
-                // Round Top
                 return torus({
                     ri: 1,
                     ro: (params.width / 2) - 1,
