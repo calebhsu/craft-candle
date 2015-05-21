@@ -1,34 +1,30 @@
 <craft>
     <parameter name="width" type="int" default="8"/>
-    <parameter name="height" type="int" default="45"/>
-    
-    <group>
+    <parameter name="rise" type="int" default="45"/>
+
+    <stack spacing="-1" align="x50 y50">
         <script>
             function main() {
-                // Body
-                if (params.width < 5)
-                    params.width = 5;
-                    
-                if (params.height < 3)
-                    params.height = 3;
-
-                // parts
-                return cylinder({
-                    r: params.width / 2,
-                    h: params.height - 1
+                var tip;
+        
+                tip = cylinder({
+                    r1: 1.01,
+                    r2:0,
+                    h: 5.5
                 });
+
+                tip = tip.scale([1, 1, 1.2]);
+                tip = tip.translate([0, 0, params.rise + 2]);
+        
+                return tip;
             }
         </script>
         
-        <script>
-            function main() {
-                // Fill
-                return cylinder({
-                    r: (params.width / 2) - 1,
-                    h: 1
-                }).translate([0, 0, params.height - 1]);
-            }
-        </script>
+        <sphere radius="1" transform="scale(1,1,1.2)"></sphere>
+        
+        <cylinder radius="0.2" height="3"></cylinder>
+        
+        <cylinder radius="{{(width / 2) - 1}}" height="1"></cylinder>
         
         <script>
             function main() {
@@ -40,50 +36,8 @@
                 }).translate([0, 0, params.height - 1]);
             }
         </script>
-        
-        <script>
-            function main() {
-                // Wick
-                return cylinder({
-                    r: 0.2,
-                    h: params.height + 2
-                });
-            }
-        </script>
-        
-        <script>
-            function main() {
-                // Flame Base
-                var base;
 
-                base = sphere({r: 1});
-        
-                // transformations
-                base = base.scale([1, 1, 1.2]);
-                base = base.translate([0, 0, params.height + 2]);
-        
-                return base;
-            }
-        </script>
-        
-        <script>
-            function main() {
-                // Flame Tip
-                var tip;
-        
-                tip = cylinder({
-                    r1: 1.01,
-                    r2:0,
-                    h: 5.5
-                });
-        
-                // transformations
-                tip = tip.scale([1, 1, 1.2]);
-                tip = tip.translate([0, 0, params.height + 2]);
-        
-                return tip;
-            }
-        </script>
-    </group>
+        <cylinder radius="{{width / 2}}" height="{{rise}}"></cylinder>
+    </stack>
     
 </craft>
