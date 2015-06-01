@@ -1,6 +1,6 @@
 <craft name="candle">
     <parameter name="width" type="int" default="8"/>
-    <parameter name="rise" type="int" default="45"/>
+    <parameter name="height" type="int" default="45"/>
 
     <stack spacing="-1" align="x50 y50">
         <script>
@@ -14,7 +14,7 @@
                 });
 
                 tip = tip.scale([1, 1, 1.2]);
-                tip = tip.translate([0, 0, params.rise + 2]);
+                tip = tip.translate([0, 0, params.height + 2]);
         
                 return tip;
             }
@@ -36,7 +36,7 @@
             }
         </script>
 
-        <cylinder radius="{{width / 2}}" height="{{rise}}"></cylinder>
+        <cylinder radius="{{width / 2}}" height="{{height}}"></cylinder>
     </stack>
     
 </craft>
