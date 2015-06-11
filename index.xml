@@ -3,40 +3,32 @@
     <parameter name="height" type="int" default="45"/>
 
     <stack spacing="-1" align="x50 y50">
-        <script>
-            function main() {
-                var tip;
+        <solidify color="darkorange">
+            <stack spacing="5.5" align="x50 y50">
+                <circle radius="0.01"></circle>
+                <circle radius="0.99"></circle>
+            </stack>
+        </solidify>
         
-                tip = cylinder({
-                    r1: 1.01,
-                    r2:0,
-                    h: 5.5
-                });
-
-                tip = tip.scale([1, 1, 1.2]);
-                tip = tip.translate([0, 0, params.height + 2]);
+        <sphere radius="1" transform="scale(1,1,1.2)" color="orangered"></sphere>
         
-                return tip;
-            }
-        </script>
+        <cylinder radius="0.2" height="3" color="black"></cylinder>
         
-        <sphere radius="1" transform="scale(1,1,1.2)"></sphere>
+        <cylinder radius="{{(width / 2) - 1}}" height="1" color="palegoldenrod"></cylinder>
         
-        <cylinder radius="0.2" height="3"></cylinder>
+        <group color="palegoldenrod">
+            <script>
+                function main() {
+                    return torus({
+                        ri: 1,
+                        ro: (params.width / 2) - 1,
+                        fni: 16
+                    }).translate([0, 0, params.height - 1]);
+                }
+            </script>
+        </group>
         
-        <cylinder radius="{{(width / 2) - 1}}" height="1"></cylinder>
-        
-        <script>
-            function main() {
-                return torus({
-                    ri: 1,
-                    ro: (params.width / 2) - 1,
-                    fni: 16
-                }).translate([0, 0, params.height - 1]);
-            }
-        </script>
-
-        <cylinder radius="{{width / 2}}" height="{{height}}"></cylinder>
+        <cylinder radius="{{width / 2}}" height="{{height}}" color="palegoldenrod"></cylinder>
     </stack>
     
 </craft>
