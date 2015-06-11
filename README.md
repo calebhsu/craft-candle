@@ -13,7 +13,7 @@ Parameterized candle model.
 ```html
 <craft>
 	<craft name="candle" module="calebhsu/craft-candle"/>
-	   <row spacing="1" align="y50">
+	<row spacing="1" align="y50">
         <candle></candle>
         <candle width="15" height="15"></candle>
     </row>
