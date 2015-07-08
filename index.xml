@@ -1,34 +1,46 @@
- <craft name="candle">
+<craft name="candle">
     <parameter name="width" type="int" default="8"/>
     <parameter name="height" type="int" default="45"/>
+    
+    <style>
+        wax { color: palegoldenrod; }
+        .wick { color: black; }
+        .flamebase { color: orangered; }
+        flame { color: darkorange; }
+    </style>
+    
+    <part name="wax">
+        <stack spacing="-1">
+            <cylinder radius="{{(width / 2) - 1}}" height="1"/>
 
-    <stack spacing="-1">
-        <solidify color="darkorange">
-            <stack spacing="5.5">
-                <circle radius="0.01"></circle>
-                <circle radius="0.99"></circle>
-            </stack>
-        </solidify>
-        
-        <sphere radius="1" transform="scale(1,1,1.2)" color="orangered"></sphere>
-        
-        <cylinder radius="0.2" height="3" color="black"></cylinder>
-        
-        <cylinder radius="{{(width / 2) - 1}}" height="1" color="palegoldenrod"></cylinder>
-        
-        <group color="palegoldenrod">
             <script>
                 function main() {
                     return torus({
                         ri: 1,
                         ro: (params.width / 2) - 1,
                         fni: 16
-                    }).translate([0, 0, params.height - 1]);
+                    });
                 }
             </script>
-        </group>
-        
-        <cylinder radius="{{width / 2}}" height="{{height}}" color="palegoldenrod"></cylinder>
+ 
+            <cylinder radius="{{width / 2}}" height="{{height}}"/>
+        </stack>
+    </part>
+
+    <part name="flame">
+        <solidify>
+            <stack spacing="5.5">
+                <circle radius="0.01"></circle>
+                <circle radius="0.99"></circle>
+            </stack>
+        </solidify>
+    </part>
+    
+    <stack spacing="-1">
+        <flame></flame>
+        <sphere radius="1" t="scale(1,1,1.2)" class="flamebase"/>
+        <cylinder radius="0.2" height="3" class="wick"/>
+        <wax></wax>
     </stack>
     
 </craft>

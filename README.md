@@ -12,8 +12,8 @@ Parameterized candle model.
 ### Example
 ```html
 <craft>
-    <craft name="candle" module="calebhsu/craft-candle"/>
-    <row spacing="1" align="y50">
+    <craft name="candle" module="craft-candle"/>
+    <row spacing="1" l="centerY()">
         <candle></candle>
         <candle width="15" height="15"></candle>
     </row>
