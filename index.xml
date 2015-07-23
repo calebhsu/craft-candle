@@ -13,7 +13,7 @@
         <stack spacing="-1">
             <cylinder radius="{{(width / 2) - 1}}" height="1"/>
 
-            <script>
+            <script type="text/openjscad">
                 function main() {
                     return torus({
                         ri: 1,

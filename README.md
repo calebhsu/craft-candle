@@ -7,7 +7,9 @@ Parameterized candle model.
 
 ### Parameters
 - width: adjusts width of candle
+	- default: 8
 - height: adjusts height of candle
+	- default: 45
 
 ### Example
 ```html
